@@ -14,7 +14,7 @@ WORDPRESS_DIR=$(DATA_DIR)/wordpress
 COMPOSE_FILE=srcs/docker-compose.yml
 
 # Targets
-all: mariadb_data wordpress_data
+all:
 #all: mariadb_data
 	@echo "$(YELLOW)==> Creating MariaDB data directory...$(RESET)"
 	@mkdir -p $(MARIADB_DIR)
@@ -48,5 +48,5 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re up down mariadb_data wordpress_data images
+.PHONY: all clean fclean re up down images
 #.PHONY: all clean fclean re up down mariadb_data images

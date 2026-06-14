@@ -34,7 +34,7 @@ services:
     networks:
       - network
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "--protocol=tcp", "--host=localhost", "-u", "$WORDPRESS_DATABASE_USER", " --password=$WORDPRESS_DATABASE_USER_PASSWORD"]
+      test: ["CMD", "mariadb-admin", "ping", "--protocol=tcp", "--host=localhost", "-u", "$WORDPRESS_DATABASE_USER", "--password=$WORDPRESS_DATABASE_USER_PASSWORD"]
       interval: 10s
       timeout: 5s
       retries: 5
