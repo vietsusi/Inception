@@ -6,16 +6,15 @@ YELLOW=$(shell echo -e "\033[1;33m")
 RED=$(shell echo -e "\033[1;31m")
 
 # Paths
-DATA_DIR=/home/vinguyen/data
-MARIADB_DIR=$(DATA_DIR)/mariadb
-WORDPRESS_DIR=$(DATA_DIR)/wordpress
+DATA_PATH=/home/vinguyen/data
+MARIADB_DIR=$(DATA_PATH)/mariadb
+WORDPRESS_DIR=$(DATA_PATH)/wordpress
 
 # Docker Compose File
 COMPOSE_FILE=srcs/docker-compose.yml
 
 # Targets
 all:
-#all: mariadb_data
 	@echo "$(YELLOW)==> Creating MariaDB data directory...$(RESET)"
 	@mkdir -p $(MARIADB_DIR)
 	@echo "$(YELLOW)==> Creating WordPress data directory...$(RESET)"
@@ -44,9 +43,9 @@ clean:
 fclean: clean
 	@echo "$(RED)==> Removing data directories...$(RESET)"
 	@sudo rm -rf $(DATA_DIR)
-	@docker system prune -f --volumes
+	@docker system prune --af
 
 re: fclean all
 
 .PHONY: all clean fclean re up down images
-#.PHONY: all clean fclean re up down mariadb_data images
+
