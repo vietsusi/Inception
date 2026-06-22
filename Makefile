@@ -43,7 +43,7 @@ clean:
 fclean: clean
 	@echo "$(RED)==> Removing data directories...$(RESET)"
 	@sudo rm -rf $(DATA_DIR)
-	@docker system prune --af
+	@docker system prune -a -f
 
 re: fclean all
 
