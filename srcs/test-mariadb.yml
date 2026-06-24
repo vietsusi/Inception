@@ -19,4 +19,4 @@ volumes:
 
 networks:
   test-network:
-    driver: bridgels
+    driver: bridge
