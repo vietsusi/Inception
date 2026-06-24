@@ -3,10 +3,10 @@ services:
     container_name: mariadb-test
     build: requirements/mariadb
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpass
-      - MYSQL_USER=testuser
-      - MYSQL_PASSWORD=testpass
-      - MYSQL_DATABASE=testdb
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     volumes:
       - mariadb-test:/var/lib/mysql
     ports:
@@ -18,5 +18,6 @@ volumes:
   mariadb-test:
 
 networks:
-  test-network:
+  docker-network:
+    name: docker-network
     driver: bridge
