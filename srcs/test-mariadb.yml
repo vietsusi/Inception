@@ -1,0 +1,22 @@
+services:
+  mariadb:
+    container_name: mariadb-test
+    build: requirements/mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_USER=testuser
+      - MYSQL_PASSWORD=testpass
+      - MYSQL_DATABASE=testdb
+    volumes:
+      - mariadb-test:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - test-network
+
+volumes:
+  mariadb-test:
+
+networks:
+  test-network:
+    driver: bridgels
