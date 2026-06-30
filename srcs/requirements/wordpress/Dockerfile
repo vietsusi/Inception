@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.22
 
 RUN apk update && apk add bash curl mariadb-client icu-data-full ghostscript \
         imagemagick openssl php82 php82-fpm php82-phar php82-json php82-mysqli \
