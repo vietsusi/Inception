@@ -24,8 +24,6 @@ if [ ! -e .firstmount ]; then
             --dbuser="$MYSQL_USER" \
             --dbpass="$MYSQL_PASSWORD" \
             --dbname="$MYSQL_DATABASE"
-        wp config set WP_REDIS_HOST redis
-        wp config set WP_REDIS_PORT 6379 --raw
         wp config set WP_CACHE true --raw
         wp config set FS_METHOD direct
         wp core install --allow-root \
