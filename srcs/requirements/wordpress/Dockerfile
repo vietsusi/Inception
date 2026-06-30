@@ -6,8 +6,8 @@ RUN apk update && apk add bash curl mariadb-client icu-data-full ghostscript \
         php82-pecl-imagick php82-intl php82-mbstring php82-openssl \
         php82-xml php82-zip php82-iconv php82-shmop php82-simplexml php82-sodium \
         php82-xmlreader php82-zlib php82-tokenizer && \
-    ln -s /usr/bin/php82 /usr/bin/php
-
+    ln -s /usr/bin/php82 /usr/bin/php && \
+    sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php82/php.ini
 RUN cd /usr/local/bin && \
     curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp
