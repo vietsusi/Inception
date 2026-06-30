@@ -1,29 +1,43 @@
 services:
   mariadb:
     container_name: mariadb
-    init: true
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    build: requirements/mariadb
     env_file:
       - .env
-    build: requirements/mariadb
     volumes:
-      - mariadb:/var/lib/mysql
+      - mariadb-test:/var/lib/mysql
     networks:
       - docker-network
-    image: mariadb
+  
+  wordpress:
+    container_name: wordpress
+    build: requirements/wordpress
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wp-test:/var/www/html
+    networks:
+      - docker-network
+
+  nginx:
+    container_name: nginx
+    build: requirements/nginx
+    env_file:
+      - .env
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - wp-test:/var/www/html
+    networks:
+      - docker-network
 
 volumes:
-  mariadb:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ${HOME}/data/mariadb
+  mariadb-test:
+  wp-test:
 
 networks:
   docker-network:
