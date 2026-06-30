@@ -9,9 +9,8 @@ if [ ! -e /etc/.firstrun ]; then
     
     cat << EOF >> /etc/nginx/http.d/default.conf
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    http2 on;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name $DOMAIN_NAME;
 
     ssl_certificate /etc/nginx/ssl/cert.crt;
@@ -24,6 +23,17 @@ server {
 
     location / {
         try_files \$uri \$uri/ /index.php?\$args;
+    }
+
+    location ~ [^/]\.php(/|\$) {
+        try_files \$fastcgi_script_name =404;
+        
+        fastcgi_pass wordpress:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        fastcgi_param PATH_INFO \$fastcgi_path_info;
+        fastcgi_split_path_info ^(.+\.php)(/.*)\$;
+        include fastcgi_params;
     }
 }
 EOF
