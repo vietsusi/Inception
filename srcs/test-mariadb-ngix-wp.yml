@@ -6,25 +6,38 @@ services:
       - .env
     volumes:
       - mariadb-test:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
       - docker-network
   
+  wordpress:
+    container_name: wordpress-test
+    build: requirements/wordpress
+    env_file:
+      - .env
+    depends_on:
+      - mariadb
+    volumes:
+      - wp_test:/var/www/html
+    networks:
+      - docker-network
+
   nginx:
     container_name: nginx-test
     build: requirements/nginx
     env_file:
       - .env
     depends_on:
-      - mariadb
+      - wordpress
     ports:
       - "443:443"
+    volumes:
+      - wp-test:/var/www/html
     networks:
       - docker-network
 
 volumes:
   mariadb-test:
+  wp-test:
 
 networks:
   docker-network:
