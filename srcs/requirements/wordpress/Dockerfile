@@ -5,7 +5,8 @@ RUN apk update && apk add bash curl mariadb-client icu-data-full ghostscript \
         php82-curl php82-dom php82-exif php82-fileinfo php82-pecl-igbinary \
         php82-pecl-imagick php82-intl php82-mbstring php82-openssl \
         php82-xml php82-zip php82-iconv php82-shmop php82-simplexml php82-sodium \
-        php82-xmlreader php82-zlib php82-tokenizer
+        php82-xmlreader php82-zlib php82-tokenizer && \
+    ln -s /usr/bin/php82 /usr/bin/php
 
 RUN cd /usr/local/bin && \
     curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
