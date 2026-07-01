@@ -1,9 +1,9 @@
 
 # Build
-docker compose -f ./srcs/test-mariadb-ngix-wp.yml up -d --build
+docker compose -f ./srcs/docker-compose.yml up -d --build
 
 # Remove
-docker compose -f ./srcs/test-mariadb-ngix-wp.yml down
+docker compose -f ./srcs/docker-compose.yml down
 
 # Clean
 docker system prune -a -f --volumes
@@ -12,9 +12,9 @@ docker system prune -a -f --volumes
 docker ps -a
 
 # check log
-docker logs mariadb-test
-docker logs wordpress-test
-docker logs nginx-test
+docker logs mariadb
+docker logs wordpress
+docker logs nginx
 
 
 # 1. Test MariaDB Connection

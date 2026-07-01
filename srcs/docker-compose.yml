@@ -1,5 +1,6 @@
 services:
   mariadb:
+    restart: unless-stopped
     container_name: mariadb
     build: requirements/mariadb
     env_file:
@@ -10,6 +11,7 @@ services:
       - docker-network
   
   wordpress:
+    restart: unless-stopped
     container_name: wordpress
     build: requirements/wordpress
     env_file:
@@ -22,6 +24,7 @@ services:
       - docker-network
 
   nginx:
+    restart: unless-stopped
     container_name: nginx
     build: requirements/nginx
     env_file:
@@ -37,7 +40,15 @@ services:
 
 volumes:
   mariadb-test:
+    driver_opts:
+      type: none
+      device: /home/vinguyen/data/mariadb
+      o: bind
   wp-test:
+    driver_opts:
+      type: none
+      device: /home/vinguyen/data/wordpress
+      o: bind  
 
 networks:
   docker-network:
