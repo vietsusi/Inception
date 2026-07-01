@@ -15,6 +15,8 @@ RUN cd /usr/local/bin && \
     curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp
 
+RUN mkdir -p /var/www/html
+
 COPY tools/wordpress-entrypoint.sh /usr/local/bin
 
 RUN chmod +x /usr/local/bin/wordpress-entrypoint.sh
