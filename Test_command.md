@@ -22,7 +22,7 @@ docker logs nginx
 docker exec -it mariadb mysqladmin -u root -p1234 status
 
 # Check databases
-docker exec -it mariadb mysql -u root -p1234 -e "SHOW DATABLES;"
+docker exec -it mariadb mysql -u root -p1234 -e "SHOW DATABASES;"
 
 # Check WordPress database tables
 docker exec -it mariadb mysql -u root -p1234 -e "USE mariadb; SHOW TABLES;"
