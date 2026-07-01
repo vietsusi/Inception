@@ -3,6 +3,11 @@ services:
     restart: always
     container_name: mariadb
     build: requirements/mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
     env_file:
       - .env
     volumes:
@@ -14,6 +19,18 @@ services:
     restart: always
     container_name: wordpress
     build: requirements/wordpress
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - WORDPRESS_TITLE=${WORDPRESS_TITLE}
+      - WORDPRESS_ADMIN_USER=${WORDPRESS_ADMIN_USER}
+      - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
+      - WORDPRESS_ADMIN_EMAIL=${WORDPRESS_ADMIN_EMAIL}
+      - WORDPRESS_USER=${WORDPRESS_USER}
+      - WORDPRESS_PASSWORD=${WORDPRESS_PASSWORD}
+      - WORDPRESS_EMAIL=${WORDPRESS_EMAIL}
     env_file:
       - .env
     depends_on:
@@ -27,6 +44,8 @@ services:
     restart: always
     container_name: nginx
     build: requirements/nginx
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
     env_file:
       - .env
     depends_on:

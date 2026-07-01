@@ -3,6 +3,8 @@ ENV_FILE := srcs/.env
 DATA_DIR := $(HOME)/data
 WORDPRESS_DATA_DIR := $(DATA_DIR)/wordpress
 MARIADB_DATA_DIR := $(DATA_DIR)/mariadb
+PORTAINER_DATA_DIR := $(DATA_DIR)/portainer
+
 name = inception
 
 all: create_dirs make_dir_up
@@ -20,6 +22,7 @@ clean: down
 	@docker system prune -a
 	@sudo rm -rf $(WORDPRESS_DATA_DIR)/*
 	@sudo rm -rf $(MARIADB_DATA_DIR)/*
+	@sudo rm -rf $(PORTAINER_DATA_DIR)/*
 
 fclean: down
 	@printf "Total clean of all configurations docker\n"
@@ -40,6 +43,7 @@ create_dirs:
 	@printf "Creating data directories...\n"
 	@mkdir -p $(WORDPRESS_DATA_DIR)
 	@mkdir -p $(MARIADB_DATA_DIR)
+	@mkdir -p $(PORTAINER_DATA_DIR)
 
 make_dir_up:
 	@printf "Launching configuration ${name}...\n"
