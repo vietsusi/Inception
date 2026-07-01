@@ -1,6 +1,6 @@
 services:
   mariadb:
-    restart: unless-stopped
+    restart: always
     container_name: mariadb
     build: requirements/mariadb
     env_file:
@@ -11,7 +11,7 @@ services:
       - docker-network
   
   wordpress:
-    restart: unless-stopped
+    restart: always
     container_name: wordpress
     build: requirements/wordpress
     env_file:
@@ -24,7 +24,7 @@ services:
       - docker-network
 
   nginx:
-    restart: unless-stopped
+    restart: always
     container_name: nginx
     build: requirements/nginx
     env_file:
