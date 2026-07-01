@@ -1,5 +1,6 @@
 FROM alpine:3.22
 
+# Install PHP 8.2, WP-CLI, symlink php82 to php
 RUN apk update && apk add bash curl mariadb-client icu-data-full ghostscript \
         imagemagick openssl php82 php82-fpm php82-phar php82-json php82-mysqli \
         php82-curl php82-dom php82-exif php82-fileinfo php82-pecl-igbinary \
@@ -8,6 +9,8 @@ RUN apk update && apk add bash curl mariadb-client icu-data-full ghostscript \
         php82-xmlreader php82-zlib php82-tokenizer && \
     ln -s /usr/bin/php82 /usr/bin/php && \
     sed -i 's/memory_limit = .*/memory_limit = 512M/' /etc/php82/php.ini
+
+# Copy script and set execution for it
 RUN cd /usr/local/bin && \
     curl -o wp -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp

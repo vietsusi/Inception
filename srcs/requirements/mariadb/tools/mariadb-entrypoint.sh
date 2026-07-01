@@ -10,6 +10,7 @@ echo "MYSQL_PASSWORD: ${MYSQL_PASSWORD}"
 echo "MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}"
 echo "=============================="
 
+# Check first run: listen on all interfaces: 0.0.0.0
 if [ ! -e /etc/.firstrun ]; then
     cat << EOF >> /etc/my.cnf.d/mariadb-server.cnf
 [mysqld]
@@ -19,6 +20,7 @@ EOF
     touch /etc/.firstrun
 fi
 
+# Check first mount
 if [ ! -e /var/lib/mysql/.firstmount ]; then
     echo "Initializing MariaDB..."
     mysql_install_db --datadir=/var/lib/mysql --skip-test-db --user=mysql --group=mysql \
@@ -60,4 +62,5 @@ EOF
 fi
 
 echo "Starting MariaDB in foreground..."
+# Start MariaDB in foreground
 exec mysqld_safe

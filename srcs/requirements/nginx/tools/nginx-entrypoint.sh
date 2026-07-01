@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# First run check -> generate ssl certificate using openssl: crt and key file
+# Listen on port 443 with SSL
+# Enables TLS 1.2 and 1.3
+# Forwared PHP request to wordpress:9000
 if [ ! -e /etc/.firstrun ]; then
     openssl req -x509 -days 365 -newkey rsa:2048 -nodes \
         -out '/etc/nginx/ssl/cert.crt' \

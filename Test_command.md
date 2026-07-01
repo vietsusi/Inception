@@ -72,3 +72,7 @@ docker exec -it wordpress wp --path=/var/www/html post list --posts_per_page=3 -
 
 # View the post through nginx
 docker exec -it nginx wget --no-check-certificate -O- https://localhost/?p=1 2>/dev/null | grep -i "Connection Test Post"
+
+# Test internal connectivity
+docker exec -it nginx ping wordpress
+docker exec -it wordpress nc -zv mariadb 3306
