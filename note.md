@@ -67,3 +67,8 @@ MariaDB Container (port 3306)
     mariadb-admin ping --protocol=tcp --host=mariadb -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
     -> change to
     mariadb-admin ping --protocol=tcp --host=mariadb --port=3307 -u "$MYSQL_USER" --password="$MYSQL_PASSWORD" --wait >/dev/null 2>/dev/null
+
+alias chrome='flatpak run com.google.Chrome --host-resolver-rules="MAP vinguyen.42.fr 192.168.56.10" --user-data-dir=/tmp/eval_profile'
+
+ssh vinguyen@localhost -p 4241
+P@ss1234
