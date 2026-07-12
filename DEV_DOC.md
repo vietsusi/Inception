@@ -142,9 +142,3 @@ docker compose exec mariadb mariadb -u root -p
 ls -lah /home/$USER/data
 docker exec srcs-wordpress-1 ls -lah /var/www/html
 ```
-
-### Healthcheck status
-```sh
-docker inspect --format='{{json .State.Health}}' srcs-mariadb-1
-docker inspect --format='{{json .State.Health}}' srcs-wordpress-1
-```
