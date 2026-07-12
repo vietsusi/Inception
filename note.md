@@ -70,5 +70,7 @@ MariaDB Container (port 3306)
 
 alias chrome='flatpak run com.google.Chrome --host-resolver-rules="MAP vinguyen.42.fr 192.168.56.10" --user-data-dir=/tmp/eval_profile'
 
+alias chrome='google-chrome-stable --host-resolver-rules="MAP vinguyen.42.fr 192.168.56.101" --user-data-dir=/tmp/eval_profile --ignore-certificate-errors --ignore-ssl-errors --allow-insecure-localhost'
+
 ssh vinguyen@localhost -p 4241
 P@ss1234
